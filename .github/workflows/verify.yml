@@ -1,0 +1,122 @@
+# What this workflow can and cannot check.
+#
+# It CANNOT run either compile gate. tools/gate.sh and tools/gate515.sh drive Lens
+# Studio's own TypeScript compiler out of /Applications/Lens Studio 5.23.app and
+# /Applications/Lens Studio 5.15.app. There is no headless distribution and no licence
+# to install one on a hosted runner, so the gate that actually decides whether the lens
+# builds runs on a developer's machine or nowhere. See CONTRIBUTING.md: a green run here
+# does not mean a change is safe.
+#
+# It will also never have a cartridge. Every test that needs one is skipped rather than
+# faked, because faking it is how a suite starts passing for the wrong reason.
+#
+# What is left is still worth running on every push: the shipping lens sources must load,
+# the extractor must typecheck, and no ROM-derived file may ever be tracked.
+
+name: verify
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  node:
+    name: Node checks
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out
+        uses: actions/checkout@v4
+        # LFS is deliberately not fetched. Four files in this repository are LFS objects
+        # -- the two Lens Studio packages, Image.png and Echopark.hdr -- and nothing
+        # below reads any of them. Lens Studio needs them; this job does not.
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+
+      # The rule the whole project rests on. This repository ships zero game content, and
+      # the cheapest way to keep that true is to fail the build the first time it is not.
+      - name: No ROM or ROM-derived file is tracked
+        run: |
+          leaked="$(git ls-files | grep -Ei '\.(gb|gbc|sav|sgm|rom)$|^Assets/Generated/' || true)"
+          if [ -n "$leaked" ]; then
+            echo "FAIL: ROM-derived files are tracked in git:"
+            echo "$leaked"
+            exit 1
+          fi
+          # And the ignore rules that keep it that way are still in force. Without this
+          # half of the check, deleting .gitignore would pass silently.
+          for probe in probe.gb probe.gbc probe.sav Assets/Generated/probe.json; do
+            if ! git check-ignore -q -- "$probe"; then
+              echo "FAIL: .gitignore no longer blocks $probe"
+              exit 1
+            fi
+          done
+          echo "PASS: nothing ROM-derived is tracked, and .gitignore still blocks .gb, .gbc, .sav and Assets/Generated/"
+
+      # A syntax error or a bad import in the shipping lens sources fails here without a
+      # cartridge, a bundle or Lens Studio. It is not a substitute for the compile gates:
+      # Node strips types, it does not check them.
+      - name: The lens sources load under Node
+        run: |
+          node --experimental-strip-types --import ./test/register.mjs --input-type=module -e '
+            globalThis.print = () => {};
+            globalThis.getTime = () => 0;
+            const mods = [
+              "./Assets/Scripts/rom/WorldFromRom.ts",
+              "./Assets/Scripts/rom/BundleFromExtraction.ts",
+              "./Assets/Scripts/rom/registry.ts",
+              "./Assets/Scripts/world/WorldData.ts",
+              "./Assets/Scripts/world/MapRuntime.ts",
+              "./Assets/Scripts/world/Checksum.ts",
+              "./Assets/Scripts/world/RomBridge.ts",
+              "./Assets/Scripts/play/Overworld.ts",
+            ];
+            for (const m of mods) { await import(m); console.log("  loaded " + m); }
+            console.log("SOURCES LOAD: " + mods.length + " modules");
+          '
+
+      # The reference extractor port, checked with a real tsc under strict.
+      - name: Extractor typecheck
+        working-directory: tools/extractor
+        run: |
+          npm ci
+          npm run typecheck
+          echo "EXTRACTOR TYPECHECK: clean"
+
+      # The bridge is plain JavaScript checked against src/types.d.ts with checkJs and
+      # strict. Clean since 30 September 2026, so it blocks.
+      - name: Bridge typecheck
+        working-directory: bridge
+        run: |
+          npm i --no-save typescript @types/node
+          npm run typecheck
+          echo "BRIDGE TYPECHECK: clean"
+
+      # Everything below needs a cartridge the runner will never have. It is written out
+      # so the skip is visible in the log rather than being an absence.
+      - name: Cartridge tests
+        env:
+          CARTRIDGE_ROM: ${{ vars.CARTRIDGE_ROM }}
+        run: |
+          if [ -z "${CARTRIDGE_ROM:-}" ] || [ ! -f "$CARTRIDGE_ROM" ]; then
+            echo "SKIP: no cartridge on this runner, and there should not be one."
+            echo "      checksum, worldfromrom, bundle and rombridge tests all need a"
+            echo "      Pokemon Red dump. Run ./tools/verify.sh locally with"
+            echo "      CARTRIDGE_ROM set; see CONTRIBUTING.md."
+            exit 0
+          fi
+          node --experimental-strip-types --import ./test/register.mjs \
+               test/checksum.test.mjs "$CARTRIDGE_ROM"
+          node --experimental-strip-types --import ./test/register.mjs \
+               test/rombridge.test.mjs "$CARTRIDGE_ROM"
+
+      - name: Summary
+        run: |
+          echo "Ran: ROM hygiene, source load, extractor typecheck, bridge typecheck."
+          echo "Not run here: tools/gate.sh and tools/gate515.sh (need Lens Studio),"
+          echo "and every cartridge test (needs a ROM). Run ./tools/verify.sh locally."

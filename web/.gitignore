@@ -1,0 +1,16 @@
+node_modules/
+.vercel/
+# Built by build.mjs from ../Assets/Scripts and ../Assets/Manifests.
+public/app.js
+public/app.js.map
+public/extract.worker.js
+public/extract.worker.js.map
+public/site.js
+public/site.js.map
+public/manifests/
+public/.built
+.vercel
+.env*
+
+# Site media (video, renders): generated from tools/reel, deployed from disk, never committed.
+public/media/

@@ -1,0 +1,38 @@
+{
+  "name": "cartridge-diorama-bridge",
+  "version": "1.0.0",
+  "description": "One-time pairing tool that hands your own Game Boy ROM to the Pocket Diorama lens over the LAN.",
+  "type": "module",
+  "private": false,
+  "license": "MIT",
+  "bin": {
+    "cartridge-diorama-bridge": "bin/cartridge-diorama-bridge.mjs"
+  },
+  "files": [
+    "bin",
+    "src",
+    "web",
+    "test",
+    "tsconfig.json",
+    "PROTOCOL.md",
+    "README.md"
+  ],
+  "scripts": {
+    "start": "node bin/cartridge-diorama-bridge.mjs",
+    "test": "node test/verify-transfer.js",
+    "typecheck": "tsc --noEmit -p tsconfig.json"
+  },
+  "engines": {
+    "node": ">=20.0.0"
+  },
+  "dependencies": {},
+  "devDependencies": {},
+  "keywords": [
+    "spectacles",
+    "lens-studio",
+    "gameboy",
+    "rom",
+    "websocket",
+    "bridge"
+  ]
+}

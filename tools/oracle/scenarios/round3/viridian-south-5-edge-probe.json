@@ -1,0 +1,29 @@
+{
+  "comment": "Probing the edge at y=28 to confirm it's a wall",
+  "start": "after-rival",
+  "noWild": true,
+  "actions": [
+    {"walk": "down", "n": 5},
+    {"wait": 90},
+    {"walk": "left", "n": 3},
+    {"walk": "up", "n": 10},
+    {"walk": "right", "n": 1},
+    {"walk": "up", "n": 1},
+    {"walk": "up", "n": 1},
+    {"wait": 60},
+    {"walk": "up", "n": 3},
+    {"walk": "left", "n": 1},
+    {"walk": "up", "n": 4},
+    {"wait": 90},
+    {"walk": "right", "n": 5},
+    {"walk": "up", "n": 1},
+    {"wait": 30},
+    {"walk": "up", "n": 1},
+    {"wait": 30},
+    {"walk": "up", "n": 1},
+    {"wait": 30},
+    {"face": "up"},
+    {"wait": 30},
+    {"press": "a"}
+  ]
+}

@@ -1,0 +1,23 @@
+{
+  "comment": "Try entering Viridian City from western Route 1",
+  "start": "after-rival",
+  "noWild": true,
+  "actions": [
+    {"walk": "down", "n": 5},
+    {"wait": 90},
+    {"walk": "left", "n": 3},
+    {"walk": "up", "n": 10},
+    {"walk": "right", "n": 1},
+    {"walk": "up", "n": 1},
+    {"walk": "up", "n": 1},
+    {"wait": 60},
+    {"walk": "up", "n": 3},
+    {"walk": "left", "n": 1},
+    {"walk": "up", "n": 4},
+    {"wait": 90},
+    {"walk": "left", "n": 5},
+    {"wait": 30},
+    {"walk": "up", "n": 10},
+    {"wait": 90}
+  ]
+}

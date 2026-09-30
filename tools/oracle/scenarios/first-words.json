@@ -1,0 +1,15 @@
+{
+  "player": "RED",
+  "rival": "BLUE",
+  "actions": [
+    { "talk": true },
+    { "walk": "left", "n": 1 },
+    { "walk": "up", "n": 4 },
+    { "walk": "right", "n": 5 },
+    { "walk": "up", "n": 1 },
+    { "walk": "down", "n": 4 },
+    { "walk": "left", "n": 2 },
+    { "face": "up" },
+    { "talk": true }
+  ]
+}

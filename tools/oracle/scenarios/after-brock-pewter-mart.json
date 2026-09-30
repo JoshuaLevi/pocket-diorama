@@ -1,0 +1,20 @@
+{
+  "start": "after-brock",
+  "noWild": true,
+  "stillNpcs": true,
+  "actions": [
+    {"walk": "left", "n": 6},
+    {"walk": "up", "n": 5},
+    {"walk": "right", "n": 8},
+    {"walk": "down", "n": 4},
+    {"walk": "right", "n": 1},
+    {"walk": "down", "n": 1},
+    {"walk": "right", "n": 4},
+    {"walk": "up", "n": 1},
+    {"wait": 90},
+    {"walk": "up", "n": 2},
+    {"walk": "left", "n": 1},
+    {"walk": "down", "n": 3},
+    {"wait": 90}
+  ]
+}

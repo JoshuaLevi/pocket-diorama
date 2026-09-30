@@ -1,0 +1,79 @@
+# Shipped by Lens Studio
+
+# The lines below are automatically generated and updated by Lens Studio.
+# Please do not modify them manually, as changes will be overwritten each time!
+# If you want to make changes to this file, please put them either above or below this section.
+
+Cache/**
+PluginsUserPreferences/**
+Support/**
+BackUp/**
+Workspaces/**
+.vscode/**
+/jsconfig.json
+/tsconfig.json
+.DS_Store
+/spk_debug_key.pem
+*.lock
+
+# Shipped by Lens Studio
+# ── Pokemon-AR: ROM en alles wat eruit komt blijft BUITEN git ──
+# Deze repo gaat later open source. Nul spelcontent, nooit.
+*.gb
+*.gbc
+*.sav
+*.sgm
+*.st[0-9]
+Assets/Generated/**
+Assets/Generated/
+golden/
+tools/golden/
+**/rom_cache/
+*.rom
+# ───────────────────────────────────────────────────────────────
+
+# BEGIN Lens Studio managed Agents-Docs block
+.mcp.json
+.cursor/mcp.json
+.vscode/mcp.json
+.codex/config.toml
+.claude/settings.local.json
+# END Lens Studio managed Agents-Docs block
+
+# Installed into the project by Lens Studio's MCP preview tools on first use
+# (PreviewInteractTool, LEAF). Editor tooling, not something the lens ships.
+Packages/AiPreviewAgent*
+Packages/Bitmoji 3D.lsc*
+Packages/Leaf.lspkg*
+
+# Added by Lens Studio (LEAF plugin)
+leaf_plugin_settings.json
+
+# Compiled by tools/padbridge/run.sh; the source next to it is what is tracked
+tools/padbridge/build/
+
+# ROM-derived audio rendered for the demo cut; never committed.
+tools/demo/rom-audio/
+tools/demo/*.mp4
+tools/demo/*.wav
+tools/demo/*.png
+tools/demo/*.jpg
+tools/demo/list-*.txt
+tools/demo/__pycache__/
+
+# Written by Lens Studio 5.23 next to the project; 5.24 ignored it from its managed block above.
+ls-live-instance.json
+ls-live-instance.json.tmp
+# The Remotion reel: generated media and dependencies stay out; the source is tracked.
+tools/reel/node_modules/
+tools/reel/out/
+tools/reel/public/footage/
+tools/reel/public/render/
+tools/reel/public/gb/
+tools/reel/public/icon.png
+tools/reel/public/score.wav
+tools/reel/npm-install.log
+tools/reel/render-plates.log
+
+# Agent worktrees are scratch checkouts, never content.
+.claude/worktrees/

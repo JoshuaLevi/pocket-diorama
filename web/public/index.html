@@ -1,0 +1,272 @@
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Pocket Diorama</title>
+    <meta name="description" content="Pocket Diorama reads a Pokemon Red, Blue or Yellow cartridge you own and rebuilds its world as a voxel diorama on your table, on Snap Spectacles. Bake your cartridge here; it never leaves your browser." />
+    <meta name="robots" content="noindex" />
+    <meta name="theme-color" content="#141210" />
+    <meta property="og:title" content="Pocket Diorama" />
+    <meta property="og:description" content="Your cartridge. Your table. A Spectacles lens that rebuilds your own Game Boy world as a voxel diorama." />
+    <meta property="og:image" content="/media/reel-poster.jpg" />
+    <link rel="icon" href="/media/favicon.png" type="image/png" />
+    <link rel="apple-touch-icon" href="/media/icon.png" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;700;900&family=JetBrains+Mono:wght@400;700&family=Press+Start+2P&display=swap" />
+    <link rel="stylesheet" href="/style.css" />
+  </head>
+  <body>
+    <a class="skip" href="#bake">Skip to the bake tool</a>
+
+    <nav class="nav" id="nav" aria-label="Site">
+      <a class="brand" href="#top">
+        <img src="/media/icon.png" alt="" width="32" height="32" />
+        <span>Pocket Diorama</span>
+      </a>
+      <div class="nav-links">
+        <a href="#film">The film</a>
+        <a href="#how">How it works</a>
+        <a href="#privacy">Privacy</a>
+        <a class="btn btn-small" href="#bake">Bake your cartridge</a>
+      </div>
+    </nav>
+
+    <header class="hero" id="top">
+      <div class="hero-media" aria-hidden="true">
+        <video id="hero-video" class="hero-video" autoplay muted loop playsinline preload="metadata" poster="/media/hero-poster.jpg">
+          <source src="/media/hero-loop.mp4" type="video/mp4" />
+        </video>
+        <div class="hero-shade"></div>
+        <div class="hero-grid"></div>
+      </div>
+      <div class="hero-copy" id="hero-copy">
+        <p class="eyebrow reveal" style="--i: 0">A Spectacles lens &middot; Red, Blue or Yellow</p>
+        <h1 class="reveal" style="--i: 1"><span class="line">Your cartridge.</span><span class="line">Your table.</span></h1>
+        <p class="lede reveal" style="--i: 2">
+          Pocket Diorama reads a Game Boy cartridge you own and rebuilds its whole world as a
+          voxel diorama on your table. Every map, every battle, every menu, from the cartridge.
+          Nothing from it ships in the lens.
+        </p>
+        <div class="cta reveal" style="--i: 3">
+          <a class="btn" href="#bake">Bake your cartridge</a>
+          <a class="btn btn-ghost" href="#film">Watch the film <span class="btn-time">0:30</span></a>
+        </div>
+      </div>
+      <a class="scroll-hint" href="#film" aria-label="Scroll down"><span></span></a>
+    </header>
+
+    <main>
+      <section class="section film" id="film">
+        <div class="wrap">
+          <div class="section-head reveal">
+            <p class="eyebrow">The film</p>
+            <h2>Thirty seconds of it.</h2>
+            <p class="muted">Captured on Spectacles, in a living room. The music was written for it.</p>
+          </div>
+          <div class="player reveal" id="player" style="--i: 1">
+            <video id="reel" preload="none" playsinline controls poster="/media/reel-poster.jpg">
+              <source src="/media/reel.mp4" type="video/mp4" />
+            </video>
+            <button class="play" id="play" type="button" aria-label="Play the film">
+              <svg viewBox="0 0 48 48" width="48" height="48" aria-hidden="true"><path d="M16 10v28l24-14z" fill="currentColor"/></svg>
+              <span>Play with sound</span>
+            </button>
+          </div>
+        </div>
+      </section>
+
+      <section class="section how" id="how">
+        <div class="wrap">
+          <div class="section-head reveal">
+            <p class="eyebrow">How it works</p>
+            <h2>No cable. No copy.</h2>
+            <p class="muted">Spectacles cannot read a file from your computer, and a published lens may only talk https. So the world takes the one road that exists.</p>
+          </div>
+          <div class="steps-grid" id="steps">
+            <svg class="wire" viewBox="0 0 1200 40" preserveAspectRatio="none" aria-hidden="true">
+              <path class="wire-path" d="M0 20 H1200" />
+            </svg>
+            <article class="step reveal" style="--i: 0">
+              <div class="step-art" aria-hidden="true">
+                <svg viewBox="0 0 120 134" width="96" height="108">
+                  <path d="M8 12q0-6 6-6h78l20 10v106q0 6-6 6H14q-6 0-6-6z" fill="#b9302a"/>
+                  <path d="M8 12q0-6 6-6h78l20 10v106q0 6-6 6H14q-6 0-6-6z" fill="url(#g1)"/>
+                  <defs><linearGradient id="g1" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#fff" stop-opacity=".14"/><stop offset=".5" stop-color="#fff" stop-opacity="0"/></linearGradient></defs>
+                  <g fill="#7d1f1a" opacity=".9"><rect x="16" y="14" width="56" height="3" rx="1.5"/><rect x="16" y="21" width="56" height="3" rx="1.5"/><rect x="16" y="28" width="56" height="3" rx="1.5"/><rect x="16" y="35" width="56" height="3" rx="1.5"/></g>
+                  <rect x="16" y="46" width="88" height="62" rx="4" fill="#efe6d6"/>
+                  <rect x="26" y="56" width="68" height="30" rx="3" fill="#9bbc0f"/>
+                  <rect x="26" y="86" width="68" height="8" fill="#9c7c58"/>
+                  <rect x="18" y="124" width="84" height="6" fill="#2a2420"/>
+                </svg>
+              </div>
+              <p class="step-num">01</p>
+              <h3>A dump of your own cartridge</h3>
+              <p>Pokemon Red, Blue or Yellow (USA, Europe), 1,048,576 bytes, as a <code>.gb</code> file. The page checks its SHA-1 before it reads a byte.</p>
+            </article>
+            <article class="step reveal" style="--i: 1">
+              <div class="step-art" aria-hidden="true">
+                <svg viewBox="0 0 160 120" width="128" height="96">
+                  <rect x="2" y="2" width="156" height="116" rx="10" fill="#f1ede4"/>
+                  <rect x="2" y="2" width="156" height="22" rx="10" fill="#e4dfd4"/>
+                  <circle cx="16" cy="13" r="4" fill="#ff5f57"/><circle cx="28" cy="13" r="4" fill="#febc2e"/><circle cx="40" cy="13" r="4" fill="#28c840"/>
+                  <rect x="18" y="40" width="124" height="44" rx="6" fill="none" stroke="#8a6a44" stroke-width="2" stroke-dasharray="5 5"/>
+                  <rect x="30" y="94" width="100" height="8" rx="4" fill="#ddd7cb"/>
+                  <rect class="bake-fill" x="30" y="94" width="72" height="8" rx="4" fill="#4e7a4a"/>
+                  <text x="80" y="66" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="11" fill="#1b1f1a">reading in your browser</text>
+                </svg>
+              </div>
+              <p class="step-num">02</p>
+              <h3>Baked here, in your browser</h3>
+              <p>The same extractor the lens runs bakes the world in a Web Worker. About twenty seconds. The cartridge never leaves this tab.</p>
+            </article>
+            <article class="step reveal" style="--i: 2">
+              <div class="step-art" aria-hidden="true">
+                <svg viewBox="0 0 260 110" width="140" height="60">
+                  <path d="M6 30Q6 12 24 12H108Q124 12 126 28Q130 44 134 28Q136 12 152 12H236Q254 12 254 30V78Q254 98 234 98H160Q142 98 138 80L134 62Q130 54 126 62L122 80Q118 98 100 98H26Q6 98 6 78Z" fill="#f1ede4"/>
+                  <rect x="18" y="24" width="98" height="62" rx="20" fill="#2c4a66" opacity=".85"/>
+                  <rect x="144" y="24" width="98" height="62" rx="20" fill="#2c4a66" opacity=".85"/>
+                  <circle cx="40" cy="40" r="6" fill="#fff" opacity=".6"/><circle cx="220" cy="40" r="6" fill="#fff" opacity=".6"/>
+                </svg>
+                <p class="code-sample" aria-hidden="true">K7M 2QX</p>
+              </div>
+              <p class="step-num">03</p>
+              <h3>Six letters, typed in the lens</h3>
+              <p>Put the Spectacles on: a Game Boy rises into view with the setup on its screen. Type the code on the keyboard it opens. The world lands on your plate and stays on the glasses; the computer is not needed again.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="section bake" id="bake">
+        <div class="wrap bake-grid">
+          <div class="bake-copy">
+            <p class="eyebrow reveal">Bake</p>
+            <h2 class="reveal" style="--i: 1">Bake your cartridge.</h2>
+            <p class="muted reveal" style="--i: 2">
+              Drop the dump. This page reads it in your browser, bakes the world the lens draws,
+              and gives you a six-letter code that works for one day.
+            </p>
+            <ul class="checks reveal" style="--i: 3">
+              <li>Pokemon Red, Blue or Yellow (USA, Europe)</li>
+              <li>Exactly 1,048,576 bytes, a <code>.gb</code> file</li>
+              <li>Nothing is uploaded until the world is baked</li>
+            </ul>
+            <div class="plate-wrap reveal" style="--i: 4" aria-hidden="true">
+              <img id="plate" class="plate" src="/media/plate.png" alt="" width="700" height="639" loading="lazy" />
+            </div>
+          </div>
+
+          <div class="tool reveal" style="--i: 2">
+            <div id="drop" class="drop" tabindex="0">
+              <div class="drop-mark" aria-hidden="true"><span></span><span></span><span></span></div>
+              <p class="big">Drop the <code>.gb</code> file here</p>
+              <p class="or">or <label class="pick" for="file">choose it</label></p>
+              <input id="file" type="file" accept=".gb,application/octet-stream" hidden />
+            </div>
+            <p id="status" class="status" aria-live="polite"></p>
+            <div id="bar" class="bar" hidden><div id="bar-fill" class="bar-fill"></div></div>
+            <div id="result" class="result" hidden>
+              <p class="label">Your code</p>
+              <p id="code" class="code">--- ---</p>
+              <p id="expiry" class="expiry"></p>
+              <p id="fetched" class="fetched" aria-live="polite" hidden></p>
+              <ol class="steps">
+                <li>Put the Spectacles on and open <strong>Pocket Diorama</strong>. A Game Boy rises into view.</li>
+                <li>Pinch to turn its two pages; pinch is A.</li>
+                <li>Type the code on the keyboard that opens, and press done.</li>
+              </ol>
+              <p id="detail" class="detail"></p>
+              <button id="again" class="again" type="button">Bake another</button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section privacy" id="privacy">
+        <div class="wrap">
+          <div class="section-head reveal">
+            <p class="eyebrow">What leaves your machine</p>
+            <h2>Not the cartridge.</h2>
+          </div>
+          <div class="two reveal" style="--i: 1">
+            <article class="pane stays">
+              <p class="pane-tag">Stays here</p>
+              <h3>The cartridge</h3>
+              <p>Read in this tab, by the same extractor the lens itself runs. It is never uploaded, never stored, never sent anywhere. You bring a cartridge you own; you are responsible for its legality.</p>
+            </article>
+            <article class="pane leaves">
+              <p class="pane-tag">Leaves, for one day</p>
+              <h3>The baked world</h3>
+              <p>The lens's own data file, about 1.7&nbsp;MB, stored privately under your code and deleted after a day. Nobody can fetch it without the code, and the code is not stored with it.</p>
+            </article>
+          </div>
+          <p class="fine reveal" style="--i: 2">
+            The lens ships no game content, and neither does this page: no maps, no sprites, no text, no music. The only thing it carries is a table of addresses. Everything you see in the lens comes from your own cartridge and stays on your own glasses.
+          </p>
+        </div>
+      </section>
+
+      <section class="section features" id="features">
+        <div class="wrap">
+          <div class="section-head reveal">
+            <p class="eyebrow">In the lens</p>
+            <h2>All of Kanto, on a plate.</h2>
+          </div>
+          <div class="feature-grid">
+            <article class="feature reveal" style="--i: 0">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 9l9-5 9 5-9 5z"/><path d="M3 9v6l9 5 9-5V9"/><path d="M12 14v6"/></svg>
+              <h3>Every map</h3>
+              <p>222 maps, indoors and out, with the original collision, warps, NPCs and trainers.</p>
+            </article>
+            <article class="feature reveal" style="--i: 1">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12h6M14 12h6"/><circle cx="12" cy="12" r="3"/><path d="M12 3v3M12 18v3"/></svg>
+              <h3>Every battle</h3>
+              <p>Wild encounters, gyms, the Elite Four and the credits, with the cartridge's own numbers.</p>
+            </article>
+            <article class="feature reveal" style="--i: 2">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 13V5a2 2 0 014 0v6"/><path d="M12 11V4a2 2 0 014 0v8"/><path d="M16 12V6a2 2 0 014 0v8a7 7 0 01-7 7h-1a7 7 0 01-6-3l-3-5a2 2 0 013-2l2 2"/></svg>
+              <h3>Hands</h3>
+              <p>Pinch the ground and Red walks there. Pinch and drag to move the world; pull with two hands to grow it.</p>
+            </article>
+            <article class="feature reveal" style="--i: 3">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 20h16"/><path d="M6 20V10l6-4 6 4v10"/><path d="M10 20v-5h4v5"/></svg>
+              <h3>Tabletop to life-size</h3>
+              <p>A model on the table, or a world around you for a fight. Walk it at whatever size the room allows.</p>
+            </article>
+            <article class="feature reveal" style="--i: 4">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="7" width="18" height="12" rx="3"/><path d="M7 12h.01M11 12h6"/></svg>
+              <h3>Kept on the glasses</h3>
+              <p>After the first code the world is stored on the Spectacles. No computer, no cable, no second visit.</p>
+            </article>
+            <article class="feature reveal" style="--i: 5">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 8l-4 4 4 4"/><path d="M16 8l4 4-4 4"/><path d="M14 4l-4 16"/></svg>
+              <h3>Open source</h3>
+              <p>The lens, the extractor and this page are one repository, built with CLAD for Spectacles.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <div class="wrap foot">
+        <div class="foot-brand">
+          <img src="/media/icon.png" alt="" width="40" height="40" />
+          <div>
+            <p class="foot-name">Pocket Diorama</p>
+            <p class="muted">A Spectacles lens by Joshua Levi.</p>
+          </div>
+        </div>
+        <p class="fine">
+          Pokemon Red, Blue and Yellow (USA, Europe) are supported. Yellow's companion Pikachu does not walk behind you yet.
+          Not affiliated with, endorsed by or sponsored by Nintendo, Game Freak or The Pokemon Company.
+        </p>
+      </div>
+    </footer>
+
+    <script src="/app.js" defer></script>
+    <script src="/site.js" defer></script>
+  </body>
+</html>

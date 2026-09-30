@@ -1,0 +1,127 @@
+- !<AssetImportMetadata/e3624afb-8936-468f-96f3-bcd725b5b367>
+  ImportedAssetIds:
+    TypeScriptAsset: !<reference> f56c583d-bf95-4274-ba38-c95969b9604a
+  ImporterName: TypeScriptAssetImporter
+  PrimaryAsset: !<reference> f56c583d-bf95-4274-ba38-c95969b9604a
+  PackageType: NotAPackage
+  LegacyPackagePolicy: ~
+  ExtraData:
+    {}
+  AssetDataMap:
+    TypeScriptAsset: !<own> c538c02b-8b29-4c98-aa27-638f5ed0e904
+  DependentFiles:
+    []
+  ImporterSettings: !<AssetImporterSettings>
+    {}
+  CompressionSettings: !<own> 00000000-0000-0000-0000-000000000000
+- !<TypeScriptAssetData/c538c02b-8b29-4c98-aa27-638f5ed0e904>
+  SvgIcon: ""
+  SetupScript:
+    code: ""
+  Description: ""
+  VersionMajor: 0
+  VersionMinor: 0
+  VersionPatch: 0
+  VersionPrerelease: ""
+  UpdateOrder: 0
+  ComponentUid: 3eb07cbe-90ce-4f3a-89ad-d063039a1820
+  ExportUid: 00000000-0000-0000-0000-000000000000
+  PackagePolicy: CanBeUnpacked
+  ScriptInputsHidden:
+    audioOutput: false
+    bakedWorld: false
+    baseMaterial: false
+    bridgeHost: false
+    bundleId: false
+    debugAutoWalk: false
+    debugFirstRun: false
+    debugForceEncounter: false
+    debugForceIngest: false
+    debugIgnoreSave: false
+    debugLadder: false
+    debugPinAt: false
+    debugPinPlacement: false
+    debugSkipTitle: false
+    enableBleController: false
+    gameBoyPrefab: false
+    internetModule: false
+    padAddress: false
+    preferCache: false
+    showPadPanel: false
+    startCellX: false
+    startCellY: false
+    startMap: false
+    tiltDegrees: false
+    useLanBridge: false
+    worldQueryModule: false
+    worldSite: false
+    zoomRung: false
+  ScriptTypesHidden:
+    {}
+  ReadMe: !<reference> 00000000-0000-0000-0000-000000000000
+  DeclarationFile: !<reference> 00000000-0000-0000-0000-000000000000
+  Tags:
+    []
+  Attachments:
+    []
+  DefaultScriptInputs:
+    - baseMaterial: !<reference.Material> 00000000-0000-0000-0000-000000000000
+      gameBoyPrefab: !<reference.ObjectPrefab> 00000000-0000-0000-0000-000000000000
+      startMap: PALLET_TOWN
+      startCellX: !<float> 5.000000
+      startCellY: !<float> 6.000000
+      preferCache: true
+      bakedWorld: !<reference.Asset> 00000000-0000-0000-0000-000000000000
+      enableBleController: false
+      padAddress: ""
+      showPadPanel: false
+      debugAutoWalk: false
+      worldQueryModule: !<reference.Asset> 00000000-0000-0000-0000-000000000000
+      debugForceEncounter: false
+      debugIgnoreSave: false
+      debugSkipTitle: false
+      debugFirstRun: false
+      tiltDegrees: !<float> 0.000000
+      zoomRung: !<float> 1.000000
+      debugPinPlacement: false
+      debugPinAt: !<Vec3> {x: 0.000000, y: -30.000000, z: -110.000000}
+      audioOutput: !<reference.AudioComponent> 00000000-0000-0000-0000-000000000000
+      internetModule: !<reference.InternetModule> 00000000-0000-0000-0000-000000000000
+      bridgeHost: 127.0.0.1
+      bundleId: kanto
+      worldSite: "https://pocket-diorama.vercel.app"
+      useLanBridge: false
+      debugForceIngest: false
+      debugLadder: false
+  ScriptTypes:
+    -
+      {}
+  InputLines:
+    - '// @input Asset.Material baseMaterial {"hint":"An ImageMaterialPreset instance. Cloned per tileset; never used directly."}'
+    - '// @input Asset.ObjectPrefab gameBoyPrefab {"hint":"The Game Boy the screen lives in (Assets/Models/gameboy.glb). It rises into view at the first run and carries the setup pages, the title and GAME BOY mode. Without it the screen hangs as a bare quad."}'
+    - '// @input string startMap = "PALLET_TOWN" {"hint":"Map to start on. PALLET_TOWN is where the original begins."}'
+    - "// @input float startCellX = 5 {\"hint\":\"Starting cell, in walkable steps from the map's top-left corner.\"}"
+    - "// @input float startCellY = 6 {\"hint\":\"Starting cell, in walkable steps from the map's top-left corner.\"}"
+    - '// @input bool preferCache = true {"hint":"Skip the bridge and use whatever is already cached in persistent storage."}'
+    - '// @input Asset.Asset bakedWorld {"hint":"Optional baked world (a JsonAsset). Used before the bridge when present."}'
+    - '// @input bool enableBleController {"hint":"Bluetooth game pad (Xbox, SteelSeries). Needs Experimental APIs, which makes the lens UNPUBLISHABLE. Off = hands and phone only, and publishable."}'
+    - '// @input string padAddress {"hint":"Bluetooth address of the pad, e.g. 0A:1B:2C:3D:4E:5F, read with nRF Connect on a phone. Leave empty to scan for it instead."}'
+    - "// @input bool showPadPanel {\"hint\":\"Start with the floating Game Boy face plate shown. Only until a save exists: after that the OPTION page's PAD row decides, and it defaults to off.\"}"
+    - '// @input bool debugAutoWalk {"hint":"Walk a fixed loop with no hardware. For preview checks and LEAF scenarios."}'
+    - '// @input Asset.Asset worldQueryModule {"hint":"Optional. Add a WorldQueryModule asset to let the diorama land on a real surface."}'
+    - '// @input bool debugForceEncounter {"hint":"Force one encounter a few seconds in, so the battle transition is testable."}'
+    - '// @input bool debugIgnoreSave {"hint":"Ignore any saved position and start from the inputs above."}'
+    - '// @input bool debugSkipTitle {"hint":"Skip the title screen and main menu: continue the save if there is one, else start a new game. For probes and LEAF."}'
+    - '// @input bool debugFirstRun {"hint":"Run the first-run setup on every start, as if the lens had never run: the four pages on the Game Boy instead of the loading page, and the seen flag is not written. For testing the onboarding in the preview and on a headset that has been through it."}'
+    - '// @input float tiltDegrees {"hint":"Diorama tilt in degrees. The original steps through 15, 35, 50 and 75.", "widget":"slider", "min":0, "max":75, "step":5}'
+    - "// @input float zoomRung = 1 {\"hint\":\"Zoom, as a rung of the OPTION page's ZOOM ladder: 0 is 14 tiles across, 1 is 20, 2 is 28, 3 is 40.\", \"widget\":\"slider\", \"min\":0, \"max\":3, \"step\":1}"
+    - '// @input bool debugPinPlacement {"hint":"Pin the diorama at a fixed spot instead of placing it in front of the wearer."}'
+    - '// @input vec3 debugPinAt = {0,-30,-110} {"hint":"Where to pin it, in world centimetres. Only used when pinning is on."}'
+    - '// @input Component.AudioComponent audioOutput {"hint":"Audio Output the music, effects and cries stream into. Optional: without it the lens is silent rather than broken."}'
+    - '// @input Asset.InternetModule internetModule {"hint":"Required to reach the pairing bridge. Add an InternetModule asset. Without one the lens falls back to the baked world."}'
+    - "// @input string bridgeHost = \"127.0.0.1\" {\"hint\":\"The bridge machine's LAN address, used on device. Preview always uses localhost.\"}"
+    - "// @input string bundleId = \"kanto\" {\"hint\":\"Which world the bridge should send. 'kanto' is every map.\"}"
+    - '// @input string worldSite = "https://pocket-diorama.vercel.app" {"hint":"The world site, e.g. https://pocket-diorama.vercel.app. The lens fetches a baked world from it by the code the wearer types."}'
+    - '// @input bool useLanBridge {"hint":"DEVELOPMENT ONLY: pull the world from the LAN bridge (tools/serve-world.sh at bridgeHost) over ws:// instead of asking for a code. Unpublishable."}'
+    - '// @input bool debugForceIngest {"hint":"Ignore the cached and the baked world, so the intro pages and the code keyboard can be seen in the preview."}'
+    - '// @input bool debugLadder {"hint":"TEST BUILDS ONLY: SELECT on the title screen lists ten places to drop into the game, with the party and badges that stretch assumes. Off in the published build."}'

@@ -1,0 +1,20 @@
+{
+  "name": "pokemon-ar-extractor",
+  "version": "0.1.0",
+  "private": true,
+  "description": "ROM -> WorldData extractor. The core runs unchanged in Node and inside the Lens Studio sandbox; only src/cli.ts touches the filesystem.",
+  "type": "module",
+  "engines": {
+    "node": ">=24"
+  },
+  "scripts": {
+    "extract": "tsx src/cli.ts",
+    "typecheck": "tsc --noEmit",
+    "verify": "tsx src/verify.ts"
+  },
+  "devDependencies": {
+    "@types/node": "^24.0.0",
+    "tsx": "^4.19.0",
+    "typescript": "^5.6.0"
+  }
+}

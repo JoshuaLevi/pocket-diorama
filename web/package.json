@@ -1,0 +1,20 @@
+{
+  "name": "pocket-diorama-site",
+  "version": "1.0.0",
+  "private": true,
+  "description": "The world site for the Pocket Diorama lens: bakes a cartridge in the visitor's browser and hands the lens a code.",
+  "type": "module",
+  "engines": {
+    "node": ">=22"
+  },
+  "scripts": {
+    "build": "node build.mjs",
+    "test": "node --test test/*.test.mjs"
+  },
+  "dependencies": {
+    "@vercel/blob": "^2.8.0"
+  },
+  "devDependencies": {
+    "esbuild": "^0.28.2"
+  }
+}

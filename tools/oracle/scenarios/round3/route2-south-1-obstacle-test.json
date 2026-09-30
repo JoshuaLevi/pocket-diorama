@@ -1,0 +1,23 @@
+{
+  "start": "after-rival",
+  "noWild": true,
+  "actions": [
+    {"walk": "down", "n": 5},
+    {"wait": 90},
+    {"walk": "left", "n": 3},
+    {"walk": "up", "n": 10},
+    {"walk": "right", "n": 1},
+    {"walk": "up", "n": 1},
+    {"walk": "up", "n": 1},
+    {"wait": 60},
+    {"walk": "up", "n": 3},
+    {"walk": "left", "n": 1},
+    {"walk": "up", "n": 4},
+    {"wait": 90},
+    {"walk": "left", "n": 3},
+    {"walk": "up", "n": 1},
+    {"face": "up"},
+    {"walk": "up", "n": 10},
+    {"face": "up"}
+  ]
+}

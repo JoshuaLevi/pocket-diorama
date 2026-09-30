@@ -1,0 +1,8 @@
+# The bridge ships with zero dependencies; node_modules only ever appears here when
+# someone installs the optional type checking tools.
+node_modules/
+
+# Never, under any circumstances, a cartridge image or a save inside the checkout.
+*.gb
+*.gbc
+*.sav

@@ -1,0 +1,116 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>pokemon-ar-bridge</title>
+    <link rel="icon" href="/favicon.svg" />
+    <link rel="stylesheet" href="/style.css" />
+  </head>
+  <body>
+    <header class="topbar">
+      <div class="brand">
+        <span class="mark" aria-hidden="true"></span>
+        <div>
+          <h1>pokemon-ar-bridge</h1>
+          <p class="sub">One handover. Then the lens is on its own.</p>
+        </div>
+      </div>
+      <div id="lens-status" class="pill pill-idle">
+        <span class="dot"></span><span id="lens-status-text">no lens attached</span>
+      </div>
+    </header>
+
+    <main>
+      <section class="card pairing">
+        <h2>Pair the lens</h2>
+        <div class="pairing-grid">
+          <div>
+            <p class="label">Pairing code</p>
+            <p id="pairing-code" class="code">------</p>
+            <button id="rotate-code" class="ghost" type="button">New code</button>
+          </div>
+          <div>
+            <p class="label">Address to enter in the lens</p>
+            <ul id="ws-urls" class="urls"></ul>
+            <p id="no-lan" class="warn hidden">
+              No LAN address found. Connect this machine to the same wifi as the glasses.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section id="transfer" class="card transfer hidden">
+        <h2 id="transfer-title">Transferring</h2>
+        <div class="bar"><div id="transfer-bar" class="bar-fill"></div></div>
+        <p id="transfer-detail" class="mono dim"></p>
+      </section>
+
+      <section class="card">
+        <h2>ROM library</h2>
+        <div id="dropzone" class="dropzone" tabindex="0" role="button">
+          <p><strong>Drop a .gb file here</strong> or click to choose one.</p>
+          <p class="dim">
+            Nothing leaves this machine. Files are stored in your user data directory and
+            checked against the three canonical Gen 1 cartridge hashes.
+          </p>
+          <input id="rom-input" type="file" accept=".gb,.gbc,application/octet-stream" multiple hidden />
+        </div>
+        <div id="rom-error" class="error hidden"></div>
+        <table class="rows">
+          <thead>
+            <tr>
+              <th>Cartridge</th>
+              <th>Size</th>
+              <th>SHA-1</th>
+              <th>Verdict</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody id="rom-rows"></tbody>
+        </table>
+        <p id="rom-empty" class="dim empty">The library is empty.</p>
+      </section>
+
+      <section class="card">
+        <h2>Saves</h2>
+        <p class="dim">
+          Battery saves the lens pushed up, plus any you drop in for it to pull back down.
+        </p>
+        <div class="save-upload">
+          <label class="ghost file-label">
+            Upload a .sav
+            <input id="save-input" type="file" accept=".sav,application/octet-stream" hidden />
+          </label>
+          <select id="save-rom" class="select" aria-label="Cartridge this save belongs to"></select>
+        </div>
+        <div id="save-error" class="error hidden"></div>
+        <table class="rows">
+          <thead>
+            <tr>
+              <th>File</th>
+              <th>Cartridge</th>
+              <th>Size</th>
+              <th>Stored</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody id="save-rows"></tbody>
+        </table>
+        <p id="save-empty" class="dim empty">No saves yet.</p>
+      </section>
+
+      <section class="card">
+        <h2>Activity</h2>
+        <ul id="activity" class="activity"></ul>
+      </section>
+    </main>
+
+    <footer>
+      <span id="data-dir" class="mono dim"></span>
+      <span class="dim">protocol v<span id="protocol-version">1</span></span>
+    </footer>
+
+    <script src="/app.js"></script>
+  </body>
+</html>

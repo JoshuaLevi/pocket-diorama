@@ -1,0 +1,9 @@
+{
+  "player": "RED",
+  "rival": "BLUE",
+  "actions": [
+    {"face": "down"},
+    {"talk": true},
+    {"wait": 60}
+  ]
+}

@@ -1,0 +1,6 @@
+[
+ {"press": "start", "settle": 90, "tag": "1 START menu"},
+ {"press": "down", "settle": 40, "tag": "2 down"},
+ {"press": "a", "settle": 120, "tag": "3 A on the second row"},
+ {"press": "b", "settle": 90, "tag": "4 B back"}
+]

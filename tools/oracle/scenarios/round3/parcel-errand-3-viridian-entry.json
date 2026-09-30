@@ -1,0 +1,11 @@
+{
+  "start": "after-rival",
+  "noWild": true,
+  "actions": [
+    {"walk": "down", "n": 5},
+    {"wait": 90},
+    {"walk": "left", "n": 5},
+    {"walk": "up", "n": 35},
+    {"wait": 90}
+  ]
+}

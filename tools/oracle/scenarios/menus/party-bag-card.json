@@ -1,0 +1,12 @@
+[
+ {"press": "start", "settle": 90},
+ {"press": "a", "settle": 150, "tag": "1 POKeMON, the party screen"},
+ {"press": "a", "settle": 120, "tag": "2 A on the lead"},
+ {"press": "b", "settle": 90},
+ {"press": "b", "settle": 90},
+ {"press": "down", "settle": 40},
+ {"press": "a", "settle": 150, "tag": "3 ITEM, the bag"},
+ {"press": "b", "settle": 90},
+ {"press": "down", "settle": 40},
+ {"press": "a", "settle": 200, "tag": "4 RED, the trainer card"}
+]

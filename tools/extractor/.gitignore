@@ -1,0 +1,6 @@
+# Node toolchain and scratch output. Nothing here belongs in the repo, and
+# `out/` in particular would be ROM-derived game content.
+node_modules/
+out/
+assets-out/
+*.tsbuildinfo

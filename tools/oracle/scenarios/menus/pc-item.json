@@ -1,0 +1,10 @@
+[
+ {"walk": "left", "n": 1},
+ {"walk": "up", "n": 4},
+ {"walk": "left", "n": 2},
+ {"face": "up"},
+ {"press": "a", "settle": 120},
+ {"press": "a", "settle": 90, "tag": "1 the item PC menu"},
+ {"press": "a", "settle": 120, "tag": "2 the withdraw list"},
+ {"press": "a", "settle": 120, "tag": "3 the quantity"}
+]

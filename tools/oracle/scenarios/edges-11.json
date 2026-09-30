@@ -1,0 +1,9 @@
+{
+  "player": "RED",
+  "rival": "BLUE",
+  "actions": [
+    { "walk": "right", "n": 5 },
+    { "walk": "down", "n": 2 },
+    { "wait": 90 }
+  ]
+}

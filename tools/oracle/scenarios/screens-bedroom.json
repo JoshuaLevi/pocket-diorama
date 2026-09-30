@@ -1,0 +1,8 @@
+{ "actions": [
+  { "face": "down" }, { "wait": 30 },
+  { "face": "up" }, { "wait": 30 },
+  { "face": "left" }, { "wait": 30 },
+  { "face": "right" }, { "wait": 30 },
+  { "walk": "left", "n": 1 }, { "walk": "up", "n": 4 }, { "walk": "right", "n": 5 }, { "walk": "up", "n": 1 },
+  { "wait": 90 }
+] }

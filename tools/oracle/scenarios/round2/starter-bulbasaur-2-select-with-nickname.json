@@ -1,0 +1,12 @@
+{ "player": "RED", "rival": "BLUE", "actions": [
+  { "walk": "left", "n": 1 }, { "walk": "up", "n": 4 }, { "walk": "right", "n": 5 }, { "walk": "up", "n": 1 }, { "wait": 90 },
+  { "walk": "down", "n": 1 }, { "walk": "left", "n": 5 }, { "walk": "down", "n": 5 }, { "wait": 90 },
+  { "walk": "right", "n": 4 }, { "walk": "up", "n": 4 }, { "walk": "right", "n": 1 }, { "walk": "up", "n": 1 },
+  { "text": "have one too!", "max": 400 }, { "wait": 90 },
+  { "walk": "down", "n": 1 }, { "walk": "right", "n": 3 },
+  { "face": "up" },
+  { "talk": true },
+  { "press": "a" },
+  { "press": "a" },
+  { "wait": 60 }
+] }
