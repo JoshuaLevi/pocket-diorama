@@ -1496,6 +1496,7 @@ export class VoxelTerrain {
   private sightEye: number[] = null;
   private sightTargets: SightPoint[] = [];
   private sightCursor = 0;
+  private sightSeconds = 0.1;
   private map: MapRuntime = null;
   private stats: TileStats = null;
   private curveLevel: number = 0;
@@ -1953,7 +1954,8 @@ export class VoxelTerrain {
       return;
     }
     entry.drawnVerts = verts; entry.drawnIndices = indices;
-    entry.bounds = faceBounds(verts,indices); entry.faded = ""; entry.sightStamp="";
+    // Calculate bounds only when a visible chunk actually needs a visibility pass.
+    entry.bounds = null; entry.faded = ""; entry.sightStamp="";
     if(entry.fade) entry.fade.enabled=false;
     VoxelTerrain.refill(entry.builder, verts, indices);
     entry.object.enabled = quads > 0 || swayQuads > 0;
@@ -1963,25 +1965,33 @@ export class VoxelTerrain {
     }
   }
 
-  /** Bounded work: one cached chunk per frame, geometry upload only when its mask changes. */
+  /** At most two visible chunks per 100 ms; vertices stay on the GPU when only visibility changes. */
   cutaway(eye: vec3, targets: SightPoint[], dt: number): void {
     if (!this.parent || !this.material || !this.chunks.length) return;
+    this.sightSeconds += Math.max(0,dt);
+    if(this.sightSeconds < 0.1)return;
+    this.sightSeconds = 0;
     const local=this.parent.getTransform().getInvertedWorldTransform().multiplyPoint(eye);
     this.sightEye=[local.x,local.y,local.z];
     this.sightTargets=targets;
-    const count=Math.min(2,this.chunks.length);
-    for(let n=0;n<count;n++) {
+    const sightStamp=this.sightEye.map(v=>Math.round(v*2)).join(",")+"/"+
+      targets.map(t=>[t.x,t.y,t.z,t.ground].map(v=>Math.round(v*2)).join(",")).join(";");
+    let processed=0;
+    for(let n=0;n<this.chunks.length && processed<2;n++) {
       this.sightCursor=(this.sightCursor+1)%this.chunks.length;
       const e=this.chunks[this.sightCursor];
-      if(!e.object||!e.bounds||!e.drawnIndices)continue;
-      const sightStamp=this.sightEye.map(v=>Math.round(v*5)).join(",")+"/"+
-        targets.map(t=>[t.x,t.y,t.z,t.ground].map(v=>Math.round(v*5)).join(",")).join(";");
+      if(!e.object||e.object.enabled===false||!e.drawnIndices||!e.drawnIndices.length)continue;
       if(e.sightStamp===sightStamp)continue;e.sightStamp=sightStamp;
-      const faces=occludingFaces(e.bounds,this.sightEye,targets);
+      processed++;
+      if(!e.bounds && targets.length)e.bounds=faceBounds(e.drawnVerts,e.drawnIndices);
+      const faces=targets.length?occludingFaces(e.bounds,this.sightEye,targets):[];
       const stamp=faces.join(",");if(stamp===e.faded)continue;
       e.faded=stamp;
-      const split=splitFaces(e.drawnVerts,e.drawnIndices,faces);
-      VoxelTerrain.refill(e.builder,e.drawnVerts,split.solid);
+      const split=faces.length?splitFaces(e.drawnVerts,e.drawnIndices,faces):null;
+      // Geometry did not move. Replacing all vertices here caused large native
+      // allocations/uploads on every tiny head movement, even while standing still.
+      const ni=e.builder.getIndicesCount();if(ni)e.builder.eraseIndices(0,ni);
+      e.builder.appendIndices(split?split.solid:e.drawnIndices);e.builder.updateMesh();
       if(!faces.length){if(e.fade)e.fade.enabled=false;continue;}
       if(!e.fade){
         if(!this.fadeMaterial){

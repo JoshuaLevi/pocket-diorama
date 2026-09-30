@@ -6797,6 +6797,8 @@ export class PokemonAR extends BaseScriptComponent {
       this.onDioramaRim(new vec3(hand.x,hand.y,hand.z))));
     this.spatialInput.update(samples,dt,{
       target: (hand) => {
+        const menu = this.spatialPage ? this.spatialPage.target(hand) : "";
+        if(menu)return menu;
         const panel = this.looseButtons ? this.looseButtons.target(hand) : "";
         if (panel) return panel;
         return this.dioramaAnchor &&
@@ -6807,7 +6809,8 @@ export class PokemonAR extends BaseScriptComponent {
       // UI gets ownership for this pinch. The remaining closed hand cannot
       // turn into a joystick when the button's short pulse expires.
       blocked: (this.pad !== null && (this.pad.anyHeld() || this.pad.secondsSincePress() < 0.12)) ||
-        (this.spatialPage && this.spatialPage.interacting()),
+        (this.spatialPage && this.spatialPage.interacting() && !this.spatialInput.holding("menu") &&
+          !samples.some(hand=>this.spatialPage.target(hand)==="menu")),
       walking: walking,
       onStickStart: () => {
         this.pinchJoystick.reset();
@@ -6823,6 +6826,10 @@ export class PokemonAR extends BaseScriptComponent {
       onStop: () => { this.stopSteering(); this.pinchJoystick.reset(); },
       onMove: (target, dx, dy, dz) => {
         const delta = new vec3(dx,dy,dz);
+        if(target === "menu") {
+          if(this.spatialPage)this.spatialPage.moveBy(delta);
+          return;
+        }
         if (target === "controls") {
           if (this.looseButtons) this.looseButtons.moveBy(delta);
           return;
@@ -6846,6 +6853,7 @@ export class PokemonAR extends BaseScriptComponent {
       onRecall: () => { if (this.looseButtons) this.looseButtons.recall(); },
     });
     if (this.looseButtons) this.looseButtons.highlight(this.spatialInput.holding("controls"));
+    if (this.spatialPage) this.spatialPage.setDragging(this.spatialInput.holding("menu"));
   }
 
   private onUpdate(event: UpdateEvent): void {
@@ -7484,8 +7492,12 @@ export class PokemonAR extends BaseScriptComponent {
     return this.groundY(x,z);
   }
 
+  private visibilitySeconds = 0;
   private updateVisibilityCutaway(dt: number): void {
     if(!this.terrain||!this.overworld||!this.camera||!this.worldObject)return;
+    this.visibilitySeconds+=dt;
+    if(this.visibilitySeconds<0.1)return;
+    dt=this.visibilitySeconds;this.visibilitySeconds=0;
     const targets: {x:number;y:number;z:number;ground:number}[]=[];
     const inv=this.worldObject.getTransform().getInvertedWorldTransform();
     const add=(o:SceneObject,height:number)=>{
